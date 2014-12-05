@@ -1,15 +1,17 @@
 import java.util.ArrayList;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class NaiveBayesClassifier {
 	
 	//Update the file name here.
-	public static String fileName = "";
+	public static String fileName = "data0.txt";
 	public static int numOfSample = 10000;
 	
 	public static void main(String[]args) throws IOException
 	{
-		
+        int row = 0;
         int numOfAttribute = getNumOfAttribute();
         
         //ArrayList to store class information.
@@ -24,7 +26,7 @@ public class NaiveBayesClassifier {
         String[][]table = new String[numOfSample][numOfCol];
         
         //Read the data from TXT file to 2D-array.
-        createTable();
+        createTable(table,row);
        
         //Get the class value
         getClassValue();
@@ -39,5 +41,17 @@ public class NaiveBayesClassifier {
         getResults();
         
         }
-        
+          public static void createTable(String[][]table, int row) throws IOException {
+              BufferedReader in  = new BufferedReader(new FileReader(fileName));
+              String line = " ";
+              while((line = in.readLine()) != null){
+        	String [] values = line.split(" ");
+        	for(int i = 0;i<values.length;i++)
+        	{
+        		table[row][i] = values[i];
+        	}
+        	  row = row + 1;
+        }
+        in.close();	
     }
+  }
