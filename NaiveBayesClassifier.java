@@ -29,7 +29,7 @@ public class NaiveBayesClassifier {
         createTable(table,row);
        
         //Get the class value
-        getClassValue();
+        getClassValue(classlist,table,numOfCol);
    
         //Get ride of duplicate element in class array-list.
         getRidOfDuplicate();
@@ -54,4 +54,9 @@ public class NaiveBayesClassifier {
         }
         in.close();	
     }
+        public static void getClassValue(ArrayList<Integer>classlist,String[][]table, int numOfCol){
+             for(int i = 0;i<numOfSample;i++){
+        	classlist.add(Integer.parseInt(table[i][numOfCol-1]));
+             }  
+       }
   }
